@@ -1,11 +1,22 @@
+#!/usr/bin/env python3
+"""
+Minecraft Launcher - Professional Python Implementation
+A modern, cross-platform Minecraft launcher with advanced features
+"""
+
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import webbrowser
 import os
 import threading
 import time
+import json
+import sys
+from pathlib import Path
 
 class MinecraftLauncher(tk.Tk):
+    """Professional Minecraft Launcher with Tkinter"""
+    
     def __init__(self):
         super().__init__()
         self.title("LauncherPro - Minecraft")
@@ -16,6 +27,7 @@ class MinecraftLauncher(tk.Tk):
         self.style = ttk.Style()
         self.style.theme_use("clam")
         
+        # Professional color scheme
         self.colors = {
             "primary": "#0f3460",
             "secondary": "#16213e",
@@ -33,18 +45,19 @@ class MinecraftLauncher(tk.Tk):
         self.load_settings()
         
     def setup_styles(self):
+        """Configure professional ttk styles"""
         self.style.configure("TButton", 
                            background=self.colors["primary"],
                            foreground=self.colors["text"],
                            padding=10,
-                           font=("Arial", 10, "bold"))
+                           font=("Segoe UI", 10, "bold"))
         self.style.map("TButton",
                      background=[("active", self.colors["secondary"])])
         
         self.style.configure("TLabel", 
                            background=self.colors["background"],
                            foreground=self.colors["text"],
-                           font=("Arial", 10))
+                           font=("Segoe UI", 10))
         
         self.style.configure("TEntry",
                            fieldbackground=self.colors["card"],
@@ -64,6 +77,7 @@ class MinecraftLauncher(tk.Tk):
                      background=[("selected", self.colors["primary"])])
     
     def create_widgets(self):
+        """Create main application widgets"""
         main_frame = ttk.Frame(self, style="TFrame")
         main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
@@ -87,6 +101,7 @@ class MinecraftLauncher(tk.Tk):
         self.create_settings_tab()
     
     def create_play_tab(self):
+        """Create Play tab with game information and launch button"""
         play_container = ttk.Frame(self.play_frame, style="TFrame")
         play_container.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
@@ -94,7 +109,7 @@ class MinecraftLauncher(tk.Tk):
         info_frame.pack(fill=tk.X, pady=(0, 20))
         
         title_label = ttk.Label(info_frame, text="Minecraft", 
-                               font=("Arial", 24, "bold"),
+                               font=("Segoe UI", 24, "bold"),
                                foreground=self.colors["success"])
         title_label.pack(side=tk.LEFT)
         
@@ -118,20 +133,20 @@ class MinecraftLauncher(tk.Tk):
             
             stat_label = ttk.Label(stat_container, text=label,
                                   foreground=self.colors["text_secondary"],
-                                  font=("Arial", 10))
+                                  font=("Segoe UI", 10))
             stat_label.pack()
             
             stat_value = ttk.Label(stat_container, text=value,
                                    foreground=self.colors["text"],
-                                   font=("Arial", 14, "bold"))
+                                   font=("Segoe UI", 14, "bold"))
             stat_value.pack()
             
         for i in range(4):
             stats_frame.columnconfigure(i, weight=1)
         
         self.play_button = ttk.Button(play_container, text="Jugar",
-                                     style="TButton",
-                                     command=self.launch_game)
+                                      style="TButton",
+                                      command=self.launch_game)
         self.play_button.pack(fill=tk.X, pady=(0, 20), ipady=10)
         
         self.progress_var = tk.DoubleVar()
@@ -150,7 +165,7 @@ class MinecraftLauncher(tk.Tk):
         player_frame.pack(fill=tk.BOTH, expand=True, pady=(20, 0))
         
         player_info_label = ttk.Label(player_frame, text="Información del Juego",
-                                      font=("Arial", 12, "bold"))
+                                      font=("Segoe UI", 12, "bold"))
         player_info_label.pack(pady=(0, 15))
         
         player_stats = [
@@ -166,11 +181,12 @@ class MinecraftLauncher(tk.Tk):
             stat_label.pack(pady=2)
     
     def create_servers_tab(self):
+        """Create Servers tab with server list"""
         servers_container = ttk.Frame(self.servers_frame, style="TFrame")
         servers_container.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
         servers_label = ttk.Label(servers_container, text="Servidores Recomendados",
-                                 font=("Arial", 16, "bold"))
+                                 font=("Segoe UI", 16, "bold"))
         servers_label.pack(fill=tk.X, pady=(0, 20))
         
         self.servers_list = ttk.Treeview(servers_container, 
@@ -200,18 +216,19 @@ class MinecraftLauncher(tk.Tk):
         add_server_btn.pack(fill=tk.X)
     
     def create_news_tab(self):
+        """Create News tab with recent updates"""
         news_container = ttk.Frame(self.news_frame, style="TFrame")
         news_container.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
         news_label = ttk.Label(news_container, text="Noticias Recientes",
-                              font=("Arial", 16, "bold"))
+                              font=("Segoe UI", 16, "bold"))
         news_label.pack(fill=tk.X, pady=(0, 20))
         
         news1_frame = ttk.Frame(news_container, style="TFrame")
         news1_frame.pack(fill=tk.X, pady=(0, 15))
         
         news1_title = ttk.Label(news1_frame, text="Minecraft 1.21 Update Released!",
-                               font=("Arial", 12, "bold"))
+                               font=("Segoe UI", 12, "bold"))
         news1_title.pack(anchor=tk.W)
         
         news1_date = ttk.Label(news1_frame, text="3 días atrás",
@@ -232,7 +249,7 @@ class MinecraftLauncher(tk.Tk):
         news2_frame.pack(fill=tk.X)
         
         news2_title = ttk.Label(news2_frame, text="New Server Features",
-                               font=("Arial", 12, "bold"))
+                               font=("Segoe UI", 12, "bold"))
         news2_title.pack(anchor=tk.W)
         
         news2_date = ttk.Label(news2_frame, text="1 semana atrás",
@@ -250,6 +267,7 @@ class MinecraftLauncher(tk.Tk):
         read_more_btn2.pack(anchor=tk.W)
     
     def create_settings_tab(self):
+        """Create Settings tab with configuration options"""
         settings_container = ttk.Frame(self.settings_frame, style="TFrame")
         settings_container.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
@@ -341,6 +359,7 @@ class MinecraftLauncher(tk.Tk):
         cancel_btn.pack(side=tk.RIGHT)
     
     def launch_game(self):
+        """Launch Minecraft with current settings"""
         self.play_button.config(state=tk.DISABLED)
         self.progress_bar.pack(fill=tk.X, pady=(0, 10))
         self.progress_label.pack()
@@ -348,6 +367,7 @@ class MinecraftLauncher(tk.Tk):
         threading.Thread(target=self.launch_animation, daemon=True).start()
     
     def launch_animation(self):
+        """Show launch progress animation"""
         steps = [
             ("Verificando archivos...", 20),
             ("Descargando recursos...", 45),
@@ -375,12 +395,15 @@ class MinecraftLauncher(tk.Tk):
         messagebox.showinfo("Éxito", "Minecraft se ha iniciado correctamente!")
     
     def add_server(self):
+        """Add new server functionality (placeholder)"""
         messagebox.showinfo("Añadir Servidor", "Funcionalidad para añadir servidores en desarrollo")
     
     def open_news(self):
+        """Open Minecraft news in web browser"""
         webbrowser.open("https://www.minecraft.net/es-es")
     
     def browse_java(self):
+        """Browse for Java executable"""
         filename = filedialog.askopenfilename(title="Seleccionar Java",
                                             filetypes=(("Ejecutable Java", "java.exe"),
                                                        ("Todos los archivos", "*.*")))
@@ -388,6 +411,7 @@ class MinecraftLauncher(tk.Tk):
             self.java_path_var.set(filename)
     
     def save_settings(self):
+        """Save launcher settings to file"""
         ram_min = self.ram_min_var.get()
         ram_max = self.ram_max_var.get()
         
@@ -405,43 +429,41 @@ class MinecraftLauncher(tk.Tk):
             "java_path": self.java_path_var.get()
         }
         
-        with open("launcher_settings.txt", "w") as f:
-            for key, value in settings.items():
-                f.write(f"{key}={value}\n")
-        
-        messagebox.showinfo("Éxito", "Ajustes guardados correctamente!")
+        try:
+            with open("launcher_settings.json", "w", encoding="utf-8") as f:
+                json.dump(settings, f, ensure_ascii=False, indent=4)
+            messagebox.showinfo("Éxito", "Ajustes guardados correctamente!")
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al guardar ajustes: {str(e)}")
     
     def cancel_settings(self):
+        """Cancel settings changes and reload saved settings"""
         self.load_settings()
     
     def load_settings(self):
-        if os.path.exists("launcher_settings.txt"):
+        """Load launcher settings from file"""
+        settings_file = "launcher_settings.json"
+        if os.path.exists(settings_file):
             try:
-                with open("launcher_settings.txt", "r") as f:
-                    for line in f:
-                        key, value = line.strip().split("=")
-                        
-                        if key == "ram_min":
-                            self.ram_min_var.set(int(value))
-                        elif key == "ram_max":
-                            self.ram_max_var.set(int(value))
-                        elif key == "width":
-                            self.width_var.set(int(value))
-                        elif key == "height":
-                            self.height_var.set(int(value))
-                        elif key == "fullscreen":
-                            self.fullscreen_var.set(value.lower() == "true")
-                        elif key == "fps":
-                            self.fps_var.set(value)
-                        elif key == "java_path":
-                            self.java_path_var.set(value)
+                with open(settings_file, "r", encoding="utf-8") as f:
+                    settings = json.load(f)
+                
+                self.ram_min_var.set(settings.get("ram_min", 2))
+                self.ram_max_var.set(settings.get("ram_max", 4))
+                self.width_var.set(settings.get("width", 1920))
+                self.height_var.set(settings.get("height", 1080))
+                self.fullscreen_var.set(settings.get("fullscreen", True))
+                self.fps_var.set(settings.get("fps", "240"))
+                self.java_path_var.set(settings.get("java_path", "java"))
             except Exception as e:
                 print(f"Error al cargar ajustes: {e}")
     
     def run(self):
+        """Start the launcher main loop"""
         self.mainloop()
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for the launcher"""
     try:
         launcher = MinecraftLauncher()
         launcher.run()
@@ -450,3 +472,6 @@ if __name__ == "__main__":
         root = tk.Tk()
         root.withdraw()
         messagebox.showerror("Error", f"Error al iniciar el launcher: {e}")
+
+if __name__ == "__main__":
+    main()

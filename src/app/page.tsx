@@ -736,26 +736,6 @@ export default function MinecraftLauncher() {
         </div>
       )}
 
-      <style jsx global>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background: #3b82f6;
-          cursor: pointer;
-          box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-        .slider::-moz-range-thumb {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background: #3b82f6;
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-      `}</style>
     </div>
   );
 }
