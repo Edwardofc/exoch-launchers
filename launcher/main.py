@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 """
-Minecraft Launcher Professional - README
+Minecraft Launcher Professional - Main Entry Point
 Copyright (c) 2026 LauncherPro Team
 
 Professional Minecraft launcher with Microsoft authentication, instances, mods,
@@ -18,7 +17,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 def main():
     """Main entry point for the launcher."""
     try:
-        from launcher.gui.main_window import MinecraftLauncher
+        from gui.main_window import MinecraftLauncher
         launcher = MinecraftLauncher()
         launcher.run()
     except ImportError as e:

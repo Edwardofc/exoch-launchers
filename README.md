@@ -1,190 +1,220 @@
-# Minecraft Launcher Python
+# Minecraft Launcher Professional
 
-Un launcher de Minecraft moderno y funcional desarrollado en Python con Tkinter.
+Un launcher profesional de Minecraft con autenticación de Microsoft, gestión de instancias, mods, skins y una interfaz de usuario moderna.
 
 ## Características Principales
 
-### 🎮 **Play**
-- Botón principal para iniciar Minecraft con animación de progreso
-- Información del juego en tiempo real (versión, FPS, RAM, resolución)
-- Barra de progreso animada con pasos de inicialización
-- Estado del jugador (última sesión, tiempo jugado, mundos)
+### 🎮 **Autenticación Microsoft**
+- Inicio de sesión con cuenta Microsoft
+- Soporte para cuentas premium
+- Gestión de tokens y sesiones
+- Autenticación segura con OAuth2
 
-### 🌐 **Servidores**
-- Lista de servidores recomendados
-- Información detallada de cada servidor (IP, jugadores)
-- Funcionalidad para añadir servidores personalizados
-- Diseño responsive para diferentes tamaños de ventana
+### 📦 **Gestión de Instancias**
+- Creación de instancias vanilla, Forge, Fabric y Quilt
+- Detección automática de tipos de instancias
+- Importación/exportación de modpacks
+- Registro de tiempo jugado
 
-### 📰 **Noticias**
-- Últimas noticias sobre Minecraft
-- Fechas y resúmenes de actualizaciones
-- Botón para leer más noticias en la web oficial
+### 🛠️ **Gestión de Mods**
+- Instalación y eliminación de mods
+- Detección automática de versiones compatible
+- Gestión de modpacks
+- Actualizaciones de mods
 
-### ⚙️ **Ajustes**
-- **Memoria RAM**: Configuración de RAM mínima y máxima (1-32 GB)
-- **Resolución**: Ajustes de ancho y alto de pantalla
-- **Modo Pantalla Completa**: Opción para jugar en pantalla completa
-- **FPS Máximos**: Selección de límites de FPS (30, 60, 120, 144, 240, Ilimitado)
-- **Java**: Configuración de la ruta del ejecutable de Java
-- **Persistencia**: Ajustes guardados automáticamente
+### 🎨 **Gestión de Skins**
+- Biblioteca de skins personalizadas
+- Previsualización de skins
+- Aplicación dinámica de skins
+- Integración con Mojang API
 
-## Requisitos
+### ⚙️ **Configuración Avanzada**
+- Personalización de tema (oscuro/claro/azul/verde)
+- Ajustes de RAM y rendimiento
+- Configuración de resolución
+- Control de FPS y rendimiento
 
-- Python 3.x (probado con 3.8+)
-- Tkinter (incluido en Python standard library)
-- Pillow (para manejo de imágenes - opcional, pero recomendado)
+### 📊 **Interfaz Profesional**
+- Design moderno y responsive
+- Barra de progreso animada
+- Información en tiempo real
+- Previsualización de skins
 
-## Instalación
-
-### Windows
-1. Asegúrate de tener Python 3.x instalado (descarga desde [python.org](https://www.python.org/))
-2. Instala Pillow (si es necesario):
-   ```bash
-   pip install pillow
-   ```
-
-### Linux
-1. Instala Python 3.x y Tkinter:
-   ```bash
-   sudo apt update && sudo apt install python3 python3-pip python3-tk
-   ```
-2. Instala Pillow:
-   ```bash
-   pip3 install pillow
-   ```
-
-### macOS
-1. Instala Python 3.x (usando Homebrew):
-   ```bash
-   brew install python3
-   ```
-2. Instala Pillow:
-   ```bash
-   pip3 install pillow
-   ```
-
-## Uso
-
-### Modo 1: Ejecutar directamente
-```bash
-python3 launcher.py
-```
-
-### Modo 2: Usar el script de arranque
-```bash
-chmod +x run.py
-./run.py
-```
+### 🔒 **Seguridad**
+- Autenticación segura OAuth2
+- Verificación de archivos
+- Gestión segura de datos
 
 ## Estructura del Proyecto
 
 ```
-minecraft-launcher/
-├── launcher.py          # Clase principal del launcher con toda la funcionalidad
-├── run.py              # Script de arranque con manejo de errores
-├── launcher_settings.txt # Archivo de configuración (generado automáticamente)
-└── README.md           # Documentación completa
+minecraft-launcher-pro/
+├── launcher/                    # Código fuente principal
+│   ├── main.py                 # Punto de entrada
+│   ├── config/                 # Configuración
+│   │   ├── launcher_config.py  # Manejador de configuración
+│   │   └── launcher_config.json # Configuración predeterminada
+│   ├── api/                    # Integración con APIs
+│   │   ├── microsoft_auth.py   # Autenticación Microsoft
+│   │   └── download_manager.py # Gestión de descargas
+│   ├── core/                   # Funcionalidad core
+│   │   ├── instance_manager.py # Gestión de instancias
+│   │   ├── mod_manager.py      # Gestión de mods
+│   │   ├── skin_manager.py     # Gestión de skins
+│   │   └── exceptions.py       # Manejador de errores
+│   └── gui/                    # Interfaz de usuario
+│       └── main_window.py      # Ventana principal
+├── instances/                  # Almacenamiento de instancias
+├── mods/                       # Repositorio de mods
+├── skins/                      # Biblioteca de skins
+├── assets/                     # Recursos Minecraft
+├── versions/                   # Versiones del juego
+├── libraries/                  # Librerías Java
+├── cache/                      # Caché de descargas
+├── run.py                      # Script de ejecución
+├── setup.py                    # Dependencias
+└── STRUCTURE.md                # Guía de estructura
 ```
+
+## Instalación
+
+### Prerrequisitos
+- Python 3.8 o superior
+- tkinter (biblioteca estándar de Python)
+- pip (gestor de paquetes)
+
+### Paso 1: Instalar Dependencias
+```bash
+pip install -r requirements.txt
+```
+
+### Paso 2: Ejecutar el Launcher
+```bash
+python run.py
+```
+
+O directamente desde el directorio `launcher`:
+```bash
+cd launcher
+python main.py
+```
+
+## Uso del Launcher
+
+### 1. Autenticación
+1. Haga clic en "Iniciar Sesión"
+2. Se abrirá el navegador web para autenticar con Microsoft
+3. Complete el proceso de inicio de sesión
+4. Cuando se le pida, introduzca el código de autenticación
+
+### 2. Crear una Instancia
+1. Navegue a la pestaña "Instancias"
+2. Haga clic en "Crear Instancia"
+3. Configure el nombre, versión y tipo de instancia
+4. Haga clic en "Guardar"
+
+### 3. Instalar Mods
+1. Navegue a la pestaña "Mods"
+2. Haga clic en "Instalar Mod"
+3. Seleccione el archivo .jar del mod
+4. El mod se instalará automáticamente
+
+### 4. Cambiar Skin
+1. Navegue a la pestaña "Skins"
+2. Haga clic en "Añadir Skin"
+3. Seleccione un archivo PNG de skin
+4. Haga clic en "Aplicar Skin"
 
 ## Configuración
 
-### Archivo de Ajustes
+Los ajustes se guardan en el archivo `config/launcher_config.json`. Algunos ajustes clave:
 
-El launcher guarda los ajustes en `launcher_settings.txt` con el siguiente formato:
-
-```txt
-ram_min=2
-ram_max=4
-width=1920
-height=1080
-fullscreen=True
-fps=240
-java_path=java
-```
-
-### Personalización
-
-#### Colores
-Puedes modificar los colores en la sección `self.colors` de la clase `MinecraftLauncher`:
-```python
-self.colors = {
-    "primary": "#0f3460",    # Azul oscuro
-    "secondary": "#16213e",  # Azul más oscuro
-    "accent": "#e94560",     # Rojo rosa
-    "success": "#00d4aa",    # Verde turquesa
-    "warning": "#ffd93d",    # Amarillo
-    "text": "#ffffff",       # Blanco
-    "text_secondary": "#a0a0a0", # Gris claro
-    "background": "#1a1a2e", # Fondo principal
-    "card": "#16213e"        # Color de tarjetas
+```json
+{
+  "theme": "dark",              // Tema: dark/light/blue/green
+  "min_ram": 2048,             // RAM mínima en MB
+  "max_ram": 4096,             // RAM máxima en MB
+  "resolution": {               // Resolución de pantalla
+    "width": 1920,
+    "height": 1080
+  },
+  "fullscreen": true,          // Pantalla completa
+  "max_fps": 240,              // FPS máximos
+  "render_distance": 12        // Distancia de renderizado en chunks
 }
 ```
 
-#### Servidores Recomendados
-Edita la lista `servers` en el método `create_servers_tab`:
-```python
-servers = [
-    ("Nombre", "IP", "Jugadores"),
-    ("Hypixel", "mc.hypixel.net", "65,234/100,000")
-]
+## Desarrollo
+
+### Estructura de Código
+
+#### 1. `gui/main_window.py`
+Contiene la interfaz de usuario principal. Responsable de:
+- Crear widgets y tablas
+- Manejar eventos
+- Coordinar con otros módulos
+
+#### 2. `core/instance_manager.py`
+Gestión de instancias. Funcionalidades:
+- Creación/eliminación de instancias
+- Detección de tipos de instancias
+- Importación de modpacks
+
+#### 3. `core/mod_manager.py`
+Gestión de mods. Funcionalidades:
+- Instalación/eliminación de mods
+- Detección de información de mods
+- Verificación de versiones
+
+#### 4. `core/skin_manager.py`
+Gestión de skins. Funcionalidades:
+- Biblioteca de skins
+- Previsualización de skins
+- Integración con Mojang API
+
+#### 5. `api/microsoft_auth.py`
+Autenticación Microsoft. Funcionalidades:
+- Flujo OAuth2
+- Gestión de tokens
+- Verificación de perfil
+
+### Ejecutar Pruebas
+```bash
+python -m pytest tests/
 ```
-
-## Características Futuras
-
-### Planeadas
-- [ ] Autenticación con cuenta Microsoft
-- [ ] Inicio real de Minecraft
-- [ ] Descarga y gestión de versiones
-- [ ] Manejo de mods y resource packs
-- [ ] Configuración de perfiles
-- [ ] Estadísticas de juego en tiempo real
-- [ ] Integración con API de Minecraft
-- [ ] Preview de skins
-- [ ] Soporte para múltiples cuentas
-
-### En Desarrollo
-- [ ] Funcionalidad para añadir servidores personalizados
-- [ ] Conexión real a servidores
-- [ ] Ping y estado de servidores
 
 ## Contribuciones
 
-Las contribuciones son bienvenidas! Por favor, sigue estos pasos:
-
+Las contribuciones son bienvenidas! Por favor:
 1. Fork el repositorio
-2. Crea una rama para tu característica (`git checkout -b feature/nueva-caracteristica`)
-3. Commit tus cambios (`git commit -am 'Agrega nueva característica'`)
-4. Push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Abre un Pull Request
-
-## Problemas Comunes
-
-### Error al iniciar el launcher
-- Asegúrate de tener Python 3.x instalado
-- Verifica que tkinter esté disponible
-- Ejecuta el script desde la línea de comandos para ver el error detallado
-
-### El launcher no se muestra correctamente
-- Verifica la resolución de tu pantalla
-- Ajusta el tamaño del launcher en `self.geometry()`
-- Prueba con diferentes temas de tkinter
-
-### No se guardan los ajustes
-- Asegúrate de que el script tenga permisos de escritura
-- Verifica la existencia del archivo `launcher_settings.txt`
-- Ejecuta el launcher como administrador si es necesario
+2. Cree una rama para su característica
+3. Implemente sus cambios
+4. Envíe un Pull Request
 
 ## Licencia
 
 MIT License - Ver LICENSE para más detalles
 
-## Autor
+## Problemas Comunes
 
-Creado por [Tu Nombre] - [Enlace a tu perfil]
+### Error de Importación
+Verifique que el directorio `launcher` esté en el PATH de Python.
 
-## Agradecimientos
+### Error de Autenticación
+- Verifique su conexión a internet
+- Asegúrese de que su cuenta Microsoft esté activa
+- Compruebe que las credenciales sean correctas
 
-- Mojang Studios por Minecraft
-- Comunidad de Minecraft por su apoyo
-- Desarrolladores de Python y Tkinter
+### Error al Iniciar
+- Verifique que Java esté instalado
+- Compruebe que la versión de Minecraft esté descargada
+- Verifique la disponibilidad de RAM
+
+## Contacto
+
+Si tienes preguntas o problemas:
+1. Abre un issue en GitHub
+2. Consulta la documentación
+3. Verifica los prerequisitos de instalación
+
+¡Disfruta de tu launcher profesional de Minecraft!
