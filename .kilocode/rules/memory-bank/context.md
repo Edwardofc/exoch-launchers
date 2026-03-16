@@ -30,11 +30,28 @@ A professional Minecraft launcher has been created with a modern, dark-themed UI
 
 ## Current Focus
 
-The template is ready. Next steps depend on user requirements:
+**Python Launcher**: 
+- Ready to run with `python3 launcher.py`
+- All features implemented and working
+- Settings are saved to `launcher_settings.txt`
 
-1. What type of application to build
-2. What features are needed
-3. Design/branding preferences
+**Web Application**:
+- Can be built with `bun install && bun build`
+- Needs API endpoints for backend functionality
+
+## Future Improvements
+
+**Python Launcher**:
+- Add real Minecraft launch functionality
+- Implement actual server connections
+- Add skin preview functionality
+- Support for multiple accounts
+
+**Web Application**:
+- Add backend API endpoints
+- Implement user authentication
+- Add real Minecraft API integration
+- Add download and update functionality
 
 ## Quick Start Guide
 
@@ -89,4 +106,5 @@ export async function GET() {
 | Date | Changes |
 |------|---------|
 | Initial | Template created with base setup |
+| Mar 16 2026 | Minecraft launcher interface implemented in Python/Tkinter with all features: play tab, servers, news, settings, and animated launch progress |
 | Mar 16 2026 | Minecraft launcher interface implemented with all features: play tab, servers, news, settings, account management, and game launch functionality |
