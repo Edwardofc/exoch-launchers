@@ -1,4 +1,4 @@
-# Technical Context: Next.js Starter Template
+# Technical Context: Minecraft Launcher
 
 ## Technology Stack
 
@@ -62,6 +62,16 @@ bun typecheck      # Run TypeScript type checking
   "react-dom": "^19.2.3" // React DOM
 }
 ```
+
+### Minecraft Launcher Features
+
+The launcher includes:
+- Client-side state management with React hooks
+- Responsive grid layouts for different screen sizes
+- Smooth animations and transitions
+- Modal dialogs for settings and account management
+- Form handling for configuration
+- Progress tracking for game launch
 
 ### Dev Dependencies
 
